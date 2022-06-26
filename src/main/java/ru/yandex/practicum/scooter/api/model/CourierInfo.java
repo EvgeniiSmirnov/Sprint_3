@@ -13,6 +13,15 @@ public class CourierInfo {
         this.firstName = firstName;
     }
 
+    public CourierInfo(String password, String firstName) {
+        this.password = password;
+        this.firstName = firstName;
+    }
+
+    public CourierInfo(String login) {
+        this.login = login;
+    }
+
     public static CourierInfo getRandomCourierInfo() {
         String login = RandomStringUtils.randomAlphabetic(7);
         String password = RandomStringUtils.randomAlphabetic(7);

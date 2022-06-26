@@ -3,7 +3,7 @@ import io.restassured.response.Response;
 import org.junit.Test;
 import ru.yandex.practicum.scooter.api.CourierClient;
 import ru.yandex.practicum.scooter.api.model.CourierInfo;
-import ru.yandex.practicum.scooter.api.model.CourierWithoutFirstname;
+import ru.yandex.practicum.scooter.api.model.LoginInfo;
 
 import static org.apache.http.HttpStatus.SC_CREATED;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -14,7 +14,7 @@ import static ru.yandex.practicum.scooter.api.model.CourierInfo.getRandomCourier
 public class OrdersListTest {
     int courierId;
     CourierInfo courierInfo;
-    CourierWithoutFirstname courierWithoutFirstname;
+    LoginInfo loginInfo;
     CourierClient courierClient = new CourierClient();
 
     @Test
@@ -24,8 +24,8 @@ public class OrdersListTest {
         Response responseCreate = courierClient.createCourier(courierInfo);
         assertEquals(SC_CREATED, responseCreate.statusCode());
 
-        courierWithoutFirstname = new CourierWithoutFirstname(courierInfo.getLogin(), courierInfo.getPassword());
-        Response responseLogin = courierClient.loginCourier(courierWithoutFirstname);
+        loginInfo = new LoginInfo(courierInfo.getLogin(), courierInfo.getPassword());
+        Response responseLogin = courierClient.loginCourier(loginInfo);
         assertEquals(SC_OK, responseLogin.statusCode());
         courierId = responseLogin.body().jsonPath().getInt("id");
 

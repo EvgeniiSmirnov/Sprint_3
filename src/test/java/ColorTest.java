@@ -4,7 +4,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import ru.yandex.practicum.scooter.api.model.Color;
 
 import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.SC_CREATED;
@@ -41,7 +40,7 @@ public class ColorTest {
     @Test
     @Description("Создание заказа с параметрами")
     public void createOrderWithColorParam() {
-        Color color = new Color();
+
         String actual = "{\"firstName\":\"" + firstName + "\","
                 + "\"lastName\":\"" + lastName + "\","
                 + "\"address\":\"" + address + "\","
@@ -50,7 +49,7 @@ public class ColorTest {
                 + "\"rentTime\":\"" + rentTime + "\","
                 + "\"deliveryDate\":\"" + deliveryDate + "\","
                 + "\"comment\":\"" + comment + "\","
-                + "\"color\":[\"" + color.coloring(colorData) + "\"]}";
+                + "\"color\":[\"" + colorData + "\"]}";
 
         Response response = given()
                 .spec(getRecSpec())

@@ -2,9 +2,7 @@ package ru.yandex.practicum.scooter.api;
 
 import io.restassured.response.Response;
 import ru.yandex.practicum.scooter.api.model.CourierInfo;
-import ru.yandex.practicum.scooter.api.model.CourierWithoutFirstname;
-import ru.yandex.practicum.scooter.api.model.CourierWithoutLogin;
-import ru.yandex.practicum.scooter.api.model.CourierWithoutPassword;
+import ru.yandex.practicum.scooter.api.model.LoginInfo;
 
 import static io.restassured.RestAssured.given;
 import static org.apache.http.HttpStatus.SC_OK;
@@ -20,7 +18,7 @@ public class CourierClient extends CourierSample {
     }
 
 
-    public Response createCourierWithoutLogin(CourierWithoutLogin courierWithoutLogin) {
+    public Response createCourierWithoutLogin(CourierInfo courierWithoutLogin) {
         return given()
                 .spec(getRecSpec())
                 .body(courierWithoutLogin)
@@ -28,7 +26,7 @@ public class CourierClient extends CourierSample {
                 .post(BASE_URL + "/api/v1/courier");
     }
 
-    public Response createCourierWithoutPassword(CourierWithoutPassword courierWithoutPassword) {
+    public Response createCourierWithoutPassword(CourierInfo courierWithoutPassword) {
         return given()
                 .spec(getRecSpec())
                 .body(courierWithoutPassword)
@@ -36,34 +34,26 @@ public class CourierClient extends CourierSample {
                 .post(BASE_URL + "/api/v1/courier");
     }
 
-    public Response createCourierWithoutFirstname(CourierWithoutFirstname courierWithoutFirstname) {
+    public Response createCourierWithoutFirstname(LoginInfo loginInfo) {
         return given()
                 .spec(getRecSpec())
-                .body(courierWithoutFirstname)
+                .body(loginInfo)
                 .when()
                 .post(BASE_URL + "/api/v1/courier");
     }
 
-    public Response loginCourier(CourierWithoutFirstname courierWithoutFirstname) {
+    public Response loginCourier(LoginInfo loginInfo) {
         return given()
                 .spec(getRecSpec())
-                .body(courierWithoutFirstname)
+                .body(loginInfo)
                 .when()
                 .post(BASE_URL + "/api/v1/courier/login");
     }
 
-    public Response loginCourierWithoutLogin(CourierWithoutLogin courierWithoutLogin) {
+    public Response loginCourierWithoutLogin(CourierInfo courierWithoutLogin) {
         return given()
                 .spec(getRecSpec())
                 .body(courierWithoutLogin)
-                .when()
-                .post(BASE_URL + "/api/v1/courier/login");
-    }
-
-    public Response loginCourierWithoutPassword(CourierWithoutPassword courierWithoutPassword) {
-        return given()
-                .spec(getRecSpec())
-                .body(courierWithoutPassword)
                 .when()
                 .post(BASE_URL + "/api/v1/courier/login");
     }
